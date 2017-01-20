@@ -29,6 +29,7 @@
 		var ws=null,wo=null;
 		var em=null,map=null,pcenter=null;
 		var wMarkSub=null;
+		var posa;
 		
 		// H5 plus事件处理
 		function plusReady(){
@@ -75,6 +76,7 @@
 			map.getUserLocation(function(state,pos){
 				if(0==state){
 					map.setCenter(pos);
+					posa = pos;
 				}
 			});
 		}
@@ -115,7 +117,7 @@
 				topoffset=(Math.round(plus.navigator.getStatusbarHeight())+1)+'px';
 			}
 			if(wMarkSub == null){
-				wMarkSub=plus.webview.create('maps_mark_sub.html','mark',{bottom:bottomoffset,height:'160px',position:'absolute',scrollIndicator:'none',background:'transparent'},{marker:mark});
+				wMarkSub=plus.webview.create('maps_mark_sub.html','mark',{bottom:bottomoffset,height:'160px',position:'absolute',scrollIndicator:'none',background:'transparent'},{marker:mark,posa:posa});
 				ws.append(wMarkSub);
 			}
 		}

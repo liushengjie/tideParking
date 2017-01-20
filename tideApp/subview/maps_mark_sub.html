@@ -13,6 +13,7 @@
 		}
 		</style>
 		<link href="../css/mui.css" rel="stylesheet" />
+		<script type="text/javascript" src="../js/gps.js" ></script>
 	</head>
 
 	<body>
@@ -21,7 +22,7 @@
 				<div class="mui-card-content-inner mui-navigate-right" id="content">
 				</div>
 			</div>
-			<div class="mui-card-footer"><span class="mui-icon mui-icon-paperplane">导航</span></div>
+			<div id="navigation" class="mui-card-footer"><span  class="mui-icon mui-icon-paperplane">导航</span></div>
 		</div>
 		<script src="../js/mui.min.js"></script>
 		<script type="text/javascript">
@@ -30,6 +31,7 @@
 			});
 			mui.plusReady(function() {
 				var marker = plus.webview.currentWebview().marker;
+				var pos = plus.webview.currentWebview().posa;
 				document.getElementById('content').innerHTML = marker.name + "<p>收费停车场&nbsp;&nbsp;距离：330米</br>"+ marker.addr + "</p>";
 				console.log(JSON.stringify(plus.webview.currentWebview().marker));
 				document.getElementById('content').addEventListener('tap', function() {
@@ -38,6 +40,14 @@
 				    url: 'detail.html', 
 				    id:'detail'
 				  });
+				});
+				
+				document.getElementById('navigation').addEventListener('tap', function() {
+					var tmp_dst = GPS.bd_decrypt(parseFloat(marker.lat),parseFloat(marker.lng));
+					var tmp_src = GPS.bd_decrypt(parseFloat(pos.latitude),parseFloat(pos.longitude));
+					var dst = new plus.maps.Point(tmp_dst['lon'],tmp_dst['lat']); 
+					var src = new plus.maps.Point(tmp_src['lon'],tmp_src['lat']); 
+					plus.maps.openSysMap( dst, marker.name, src );
 				});
 			});
 			

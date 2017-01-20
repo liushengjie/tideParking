@@ -1,0 +1,93 @@
+<script type="text/javascript">
+$('#property_datagrid').datagrid({
+    gridTitle : '物业管理',
+    dataUrl: '/tideServer/admin/base/property/list',
+    loadType: 'get',
+    columns: [
+        {
+            name: 'id',
+            label: '物业编号',
+            align: 'center',
+            width: 70,
+            edit: false,
+            add: false
+        },
+        {
+            name: 'propertyName',
+            label: '物业名称',
+            align: 'center',
+            width: 150,
+            edit:false,
+            rule:'required'
+        },
+        {
+            name: 'contacts',
+            label: '联系人',
+            align: 'center',
+            width: 150
+        },
+        {
+            name: 'phone',
+            label: '物业电话',
+            align: 'center',
+            width: 150
+        },
+        {
+            name: 'addr',
+            label: '物业地址',
+            align: 'center',
+            width: 160
+        },
+        {
+            name: 'status',
+            label: '状态',
+            type: 'select',
+            align: 'center',
+            width: 45,
+            items: [{'1':'启用'}, {'2':'禁用'}],
+            render: function(value) {
+                return String(value) == '1' ? '启用' : '禁用'
+            }
+        }
+    ],
+    paging: {pageSize:15},
+    height: '100%',
+    tableWidth:'99%',
+    showToolbar: true,
+    toolbarItem: 'add,edit,|,refresh',
+    local: 'local',
+    filterThead: false,
+    sortAll: true,
+    filterAll: true,
+    linenumberAll: true,
+    showCheckboxcol: true,
+    columnLock: false,
+    editUrl: '/tideServer/admin/base/property/saveOrUpdate',
+    editMode: 'dialog'
+})
+
+$(document).on('bjui.beforeCloseDialog', function(e) {
+    var $dialog = $(e.target)
+    $('#property_datagrid').datagrid('refresh')
+})
+
+</script>
+<div class="bjui-pageHeader">
+   <form name="searchForm" data-toggle="ajaxsearch" data-options="{searchDatagrid:$.CurrentNavtab.find('#property_datagrid')}">
+        <div class="bjui-searchBar">
+            <label>物业名称：</label><input type="text" value="" name="propertyName" size="10">&nbsp;
+            <label>联系人：</label><input type="text" value="" name="contacts" size="10">&nbsp;
+            <label>物业电话：</label><input type="text" value="" name="phone" size="10">&nbsp;
+			<label>物业地址：</label><input type="text" value="" name="addr" size="10">&nbsp;
+			
+			<button type="submit" class="btn-default" data-icon="search">
+				查询
+			</button>&nbsp; 
+			
+			<button type="reset" class="btn-orange" data-icon="times">重置</button>
+        </div>
+    </form>
+</div>
+<div class="bjui-pageContent">
+	<table id="property_datagrid" class="table table-bordered"></table>
+</div>

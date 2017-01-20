@@ -1,0 +1,173 @@
+<script type="text/javascript">
+$('#employer_datagrid').datagrid({
+    gridTitle : '业主信息',
+    dataUrl: '/tideServer/admin/base/employer/list',
+    loadType: 'get',
+    columns: [
+        {
+            name: 'id',
+            label: '业主ID',
+            align: 'center',
+            width: 70,
+            edit: false,
+            add: false
+        },
+        {
+            name: 'memId',
+            label: '会员ID',
+            hide:true,
+            align: 'center',
+            width: 70
+        },
+        {
+            name: 'userNo',
+            label: '业主用户名',
+            type:'findgrid',
+            attrs:{ 
+	        	"data-options":{
+	                include: 'memId:id,userNo,userName,phone',
+	                dialogOptions: {title:'查找会员'},
+	            	gridOptions:{
+	                    local: 'local',
+	                    loadType: 'get',
+	                    dataUrl: '/tideServer/admin/base/member/list',
+	                    columns: [
+	                        {name:'id', label:'会员ID', width:50},
+	                        {name:'phone', label:'手机号', width:100},
+	                        {name:'userNo', label:'会员登录名'},
+	                        {name:'userName', label:'会员名称'}
+	                    ],
+	                    paging: {pageSize:15},
+					    height: '100%',
+					    tableWidth:'100%',
+					    showToolbar: true,
+					    toolbarItem: 'refresh',
+					    filterThead: false,
+					    sortAll: true,
+					    filterAll: true,
+					    linenumberAll: true,
+					    columnLock: false
+	                },
+				    empty:false
+	            },
+			    readonly:'readonly'
+        	},
+        	//rule: 'required',
+            align: 'center',
+            width: 70,
+            edit: false
+        },
+         {
+            name: 'userName',
+            label: '业主姓名',
+            align: 'center',
+            width: 70,
+            attrs:{readonly:'readonly'}
+        },
+        {
+            name: 'phone',
+            label: '业主手机号',
+            align: 'center',
+            width: 150,
+            attrs:{readonly:'readonly'}
+        },
+        {
+            name: 'zoneId',
+            label: '小区ID',
+            hide: true,
+            align: 'center',
+            width: 150
+        },
+        {
+            name: 'name',
+            label: '所属小区',
+            type:'findgrid',
+            attrs:{ 
+	        	"data-options":{
+	                include: 'zoneId:id,name,addr',
+	                dialogOptions: {title:'查找小区'},
+	            	gridOptions:{
+	                    local: 'local',
+	                    loadType: 'get',
+	                    dataUrl: '/tideServer/admin/base/zone/list',
+	                    columns: [
+	                        {name:'id', label:'小区ID', width:50},
+	                        {name:'name', label:'小区名称', width:100},
+	                        {name:'addr', label:'地址'}
+	                    ],
+	                    paging: {pageSize:15},
+					    height: '100%',
+					    tableWidth:'100%',
+					    showToolbar: true,
+					    toolbarItem: 'refresh',
+					    filterThead: false,
+					    sortAll: true,
+					    filterAll: true,
+					    linenumberAll: true,
+					    columnLock: false
+	                },
+				    empty:false,
+	            },
+	            readonly:'readonly'
+        	},
+        	//rule: 'required',
+            align: 'center',
+            width: 150,
+        },
+        {
+            name: 'addr',
+            label: '小区地址',
+            align: 'center',
+            width: 200,
+            attrs:{readonly:'readonly'}
+        },
+        {
+            name: 'status',
+            label: '状态',
+            type: 'select',
+            align: 'center',
+            width: 45,
+            items: [{'1':'启用'}, {'2':'禁用'}],
+            render: function(value) {
+                return String(value) == '1' ? '启用' : '禁用'
+            }
+        }
+    ],
+    paging: {pageSize:15},
+    height: '100%',
+    tableWidth:'99%',
+    showToolbar: true,
+    toolbarItem: 'add,edit,|,refresh',
+    local: 'local',
+    filterThead: false,
+    sortAll: true,
+    filterAll: true,
+    linenumberAll: true,
+    showCheckboxcol: true,
+    columnLock: false,
+    editUrl: '/tideServer/admin/base/employer/saveOrUpdate',
+    editMode: 'dialog',
+    afterSave: function($trs, datas){
+    	$('#employer_datagrid').datagrid('refresh');
+    }
+})
+
+
+</script>
+<div class="bjui-pageHeader">
+   <form name="searchForm" data-toggle="ajaxsearch" data-options="{searchDatagrid:$.CurrentNavtab.find('#employer_datagrid')}">
+        <div class="bjui-searchBar">
+           <label>会员姓名：</label><input type="text" value="" name="userNo" size="10">&nbsp;
+            <label>会员ID：</label><input type="text" value="" name="memId" size="10">&nbsp;
+
+			<button type="submit" class="btn-default" data-icon="search">
+				查询
+			</button>&nbsp; 
+			
+			<button type="reset" class="btn-orange" data-icon="times">重置</button>
+        </div>
+    </form>
+</div>
+<div class="bjui-pageContent">
+	<table id="employer_datagrid" class="table table-bordered"></table>
+</div>

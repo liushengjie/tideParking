@@ -1,0 +1,13 @@
+[
+    {"name":"基础信息", "children":[
+        {"id":"base-member", "name":"会员管理", "target":"navtab", "url":"html/base/member.html"},
+        {"id":"base-property", "name":"物业管理", "target":"navtab", "url":"html/base/property.html"},
+        {"id":"base-zone", "name":"小区管理", "target":"navtab", "url":"html/base/zone.html"},
+        {"id":"base-employer", "name":"业主注册", "target":"navtab", "url":"html/base/employer.html"},
+        {"id":"base-parking", "name":"车位管理", "target":"navtab", "url":"html/base/parking.html"}
+    ]},
+    {"name":"订单信息", "children":[
+        {"id":"base-order", "name":"订单管理", "target":"navtab", "url":"html/base/order.html"},
+        {"id":"base-commission", "name":"佣金日志", "target":"navtab", "url":"html/base/commission.html"}
+    ]}
+]

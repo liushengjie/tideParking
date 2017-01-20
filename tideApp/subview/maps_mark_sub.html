@@ -1,0 +1,47 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="utf-8"/>
+		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+		<meta name="HandheldFriendly" content="true"/>
+		<meta name="MobileOptimized" content="320"/>
+		<title>Hello H5+</title>
+		<style type="text/css">
+		html,body{
+			overflow:hidden;
+		}
+		</style>
+		<link href="../css/mui.css" rel="stylesheet" />
+	</head>
+
+	<body>
+		<div class="mui-card">
+			<div class="mui-card-content">
+				<div class="mui-card-content-inner mui-navigate-right" id="content">
+				</div>
+			</div>
+			<div class="mui-card-footer"><span class="mui-icon mui-icon-paperplane">导航</span></div>
+		</div>
+		<script src="../js/mui.min.js"></script>
+		<script type="text/javascript">
+			mui.init({
+				swipeBack: true //启用右滑关闭功能
+			});
+			mui.plusReady(function() {
+				var marker = plus.webview.currentWebview().marker;
+				document.getElementById('content').innerHTML = marker.name + "<p>收费停车场&nbsp;&nbsp;距离：330米</br>"+ marker.addr + "</p>";
+				console.log(JSON.stringify(plus.webview.currentWebview().marker));
+				document.getElementById('content').addEventListener('tap', function() {
+				  //打开关于页面
+				  mui.openWindow({
+				    url: 'detail.html', 
+				    id:'detail'
+				  });
+				});
+			});
+			
+		</script>
+	</body>
+
+</html>

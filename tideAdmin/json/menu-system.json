@@ -1,0 +1,6 @@
+[
+    {"name":"系统管理", "children":[
+        {"id":"base-button", "name":"菜单设置", "target":"navtab", "url":"html/form/button.html"},
+        {"id":"base-input", "name":"角色设置", "target":"navtab", "url":"html/form/input.html"}
+    ]}
+]

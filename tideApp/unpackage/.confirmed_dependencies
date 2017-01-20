@@ -1,0 +1,106 @@
+{
+  "map.html": {
+    "href": "map.html",
+    "resources": [
+      "js/mui.min.js",
+      "css/mui.min.css"
+    ],
+    "refer": [],
+    "priority": 0
+  },
+  "findParking.html": {
+    "href": "findParking.html",
+    "resources": [
+      "css/mui.min.css",
+      "js/mui.min.js"
+    ],
+    "refer": [],
+    "priority": 0
+  },
+  "setting.html": {
+    "href": "setting.html",
+    "resources": [
+      "js/mui.min.js",
+      "css/mui.min.css"
+    ],
+    "refer": [],
+    "priority": 0
+  },
+  "ower.html": {
+    "href": "ower.html",
+    "resources": [
+      "js/mui.min.js",
+      "css/mui.min.css"
+    ],
+    "refer": [],
+    "priority": 0
+  },
+  "index.html": {
+    "href": "index.html",
+    "resources": [
+      "js/mui.min.js",
+      "css/mui.min.css",
+      "fonts/mui.ttf",
+      "css/mui.css",
+      "subview/map.html"
+    ],
+    "refer": [
+      "map.html",
+      "findParking.html",
+      "setting.html",
+      "ower.html",
+      "subview/ower.html",
+      "subview/setting.html",
+      "subview/findParking.html",
+      "subview/map.html"
+    ],
+    "priority": 0
+  },
+  "subview/ower.html": {
+    "resources": [
+      "image/yatai.jpg",
+      "image/parking.png"
+    ],
+    "refer": []
+  },
+  "subview/setting.html": {
+    "resources": [
+      "css/mui.min.css"
+    ],
+    "refer": []
+  },
+  "subview/map.html": {
+    "resources": [
+      "subview/maps_search_sub.html",
+      "js/immersed.js"
+    ],
+    "refer": [
+      "subview/maps_search_sub.html",
+      "subview/maps_mark_sub.html"
+    ]
+  },
+  "subview/findParking.html": {
+    "resources": [
+      "image/yatai.jpg"
+    ],
+    "refer": []
+  },
+  "subview/maps_mark_sub.html": {
+    "refer": [
+      "subview/detail.html"
+    ],
+    "resources": [
+      "js/mui.min.js",
+      "fonts/mui.ttf",
+      "css/mui.css"
+    ]
+  },
+  "subview/maps_search_sub.html": {
+    "resources": [
+      "js/mui.min.js",
+      "fonts/mui.ttf",
+      "css/mui.css"
+    ],
+    "refer": []
+  }
+}

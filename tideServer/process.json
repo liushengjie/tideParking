@@ -1,0 +1,11 @@
+{
+    "name": "tideServer",
+    "script": "app.js",
+    "cwd": "./",
+    "exec_mode": "fork",
+    "watch": false,
+    "ignore_watch": ["tmp"],
+    "env": {
+        "NODE_ENV": "production"
+    }
+}

@@ -1,0 +1,131 @@
+<script type="text/javascript">
+BJUI.ajax('doajax', {
+    url       : '/tideServer/admin/base/property/list',
+    type      : 'get',
+    cache     : false,
+    dataType  : 'json',
+    okCallback: function(response) {
+    	console.log(response.list.length)
+    	for(var i=0; i < response.list.length; i++){
+    		//$('#propertyName').html("<option value="+response.list[i].id+">"+response.list[i].propertyName+"</option>");
+    	}
+    }
+});
+var submitform = () => {
+	$('#zone_form').isValid(function(v){
+    	if(v){
+    		var zone = new Object();
+    		zone.id = "";
+    		zone.propertyId = $("input[name='propertyId']").val();
+    		zone.propertyName = $("input[name='propertyName1']").val();
+    		zone.name = $("input[name='zone_name']").val();
+    		zone.addr = $("input[name='zone_addr']").val();
+    		zone.lat = $("input[name='lat']").val();
+    		zone.lng = $("input[name='lng']").val();
+    		zone.img = null;
+    		zone.status = $("select[name='status']").val();
+    		zone.addFlag = true;
+    		
+    		console.log(zone)
+    		
+    		$("input[name='json']").val(JSON.stringify(zone));
+    		$('#zone_form').bjuiajax('ajaxForm');
+    		BJUI.navtab('refresh', 'base-zone')
+    		$(this).dialog('closeCurrent');
+    	}
+	});
+}
+</script>
+<div class="bjui-pageContent">
+    <div data-layout-h="0">
+        <div style="padding-left:0px;padding-right:0px;">
+			<!-- 表单开始  -->
+			<div class="bjui-pageHeader" style="font-weight:700;font-size:16px;text-align: center;border-left: 1px solid gray;border-right: 1px solid gray;border-top:1px solid gray;">
+				小区停车场管理
+			</div>
+			<div style="border-left: 1px solid gray;border-right: 1px solid gray;border-bottom:1px solid gray;">
+			    <form id="zone_form" action="/tideServer/admin/base/zone/saveOrUpdate"  class="pageForm" data-toggle="validate" data-reload="true">
+			    	<div class="pageFormContent">
+			    		<input type="hidden" name="json">
+			            <table class="table table-condensed table-hover" width="99%">
+			            	<tbody>
+			            		<tr>
+			                		<td>
+			                            <label class="control-label x90">停车场名称：</label>
+		                       			<input type="text" size="15" style="width: 100%" name="zone_name"/>
+			                        </td>
+			                        <td >
+			                            <label class="control-label x90">归属物业：</label>
+			                            <input type="hidden" id="propertyId" name="propertyId">
+			                            <input id="propertyName" type="text" name="propertyName1" value="" data-toggle="findgrid" data-options="{
+										    include: 'propertyName1:propertyName, propertyId:id',
+										    dialogOptions: {title:'选择物业'},
+										    gridOptions: {
+										        local: 'local',
+										        loadType: 'get',
+										        dataUrl: '/tideServer/admin/base/property/list',
+										        columns: [
+										            {name:'id', label:'物业编号', width:100},
+										            {name:'propertyName', label:'物业名称'},
+										            {name:'contacts', label:'联系人'},
+										            {name:'phone', label:'联系人电话'},
+										            {name:'addr', label:'地址'}
+										        ],
+							                    paging: {pageSize:15},
+											    height: '100%',
+											    tableWidth:'100%',
+											    showToolbar: true,
+											    toolbarItem: 'refresh',
+											    filterThead: false,
+											    sortAll: true,
+											    filterAll: true,
+											    linenumberAll: true,
+											    columnLock: false
+										    },
+										    empty:false
+										}" readonly="readonly" placeholder="点放大镜按钮查找" size="15">
+			                        </td>
+			                	</tr>
+			                	<tr>
+			                		<td >
+			                            <label class="control-label x90">停车场地址：</label>
+			                            <input type="text" size="15" name="zone_addr">
+			                        </td>
+			                		<td>
+			                            <label class="control-label x90">经度：</label>
+			                        	<input type="text" size="15" name="lat">
+			                        </td>
+			                	</tr>
+			                	<tr>
+			                		<td>
+		                           	 	<label class="control-label x90">纬度：</label>
+			                    		<input type="text" size="15" name="lng">
+			                        </td>
+			                        <td>
+			                            <label class="control-label x90">账号状态：</label>
+			                            <select data-toggle="selectpicker" size="15" name="status">
+								            <option value="1">启用</option>
+								            <option value="2">禁用</option>
+								        </select>
+			                        </td>
+			                	</tr>
+			                	<tr>
+			                    	<td colspan="2">
+			                    		<ul>
+				                    		<li style="padding-left:4px;padding-right:4px;" class="pull-right">
+				                    			<button type="button" class="btn-close">关闭</button>
+				                    		</li>
+				                    		<li style="padding-left:4px;padding-right:4px;" class="pull-right">
+				                				<button type="button" onclick="submitform()" class="btn-green" data-icon="save">保存</button>
+				                			</li>
+			            				</ul>
+			                    	</td>
+			                    </tr>
+			            	</tbody>
+			            </table>
+			        </div>
+			    </form>
+			</div>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,135 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta charset="utf-8"/>
+		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+		<meta name="HandheldFriendly" content="true"/>
+		<meta name="MobileOptimized" content="320"/>
+		<title>潮汐停车</title>
+		<style type="text/css">
+			#map{
+				width: 100%;
+				position: fixed;
+				left: 0px;
+				top: 0px;
+				bottom: 0px;
+				line-height: 200px;
+				text-align: center;
+				background: #FFFFFF;
+			}
+		</style>
+		<script src="../js/mui.min.js"></script>
+    	<link href="../css/mui.css" rel="stylesheet"/>
+	</head>
+	<body>
+		<div id="map">地图加载中...</div>
+		
+		<script type="text/javascript">
+		mui.init();
+		var ws=null,wo=null;
+		var em=null,map=null,pcenter=null;
+		var wMarkSub=null;
+		
+		// H5 plus事件处理
+		function plusReady(){
+			if(!em||ws){return};
+			// 获取窗口对象
+			ws=plus.webview.currentWebview();
+			wo=ws.opener();
+			
+			var option = {
+				"position" : "absolute",
+				"zoom" : 16
+			};
+			setTimeout(function(){
+				map=new plus.maps.Map("map",option);
+				createMarker();
+				// 创建子窗口
+				createSearchSubview();
+				userLocation();
+				map.onclick = function( point ){
+					if(wMarkSub != null){
+						ws.remove(wMarkSub);
+						wMarkSub.close();
+					}
+				}
+			},300);
+			// 显示页面并关闭等待框
+		    ws.show("pop-in");
+		}
+		
+		if(window.plus){
+			plusReady();
+		}else{
+			document.addEventListener("plusready",plusReady,false);
+		}
+		
+		// DOMContentloaded事件处理
+		document.addEventListener("DOMContentLoaded",function(){
+			em=document.getElementById("map");
+			window.plus&&plusReady();
+		},false);
+		
+	    function userLocation(){
+			map.showUserLocation( true );
+			map.getUserLocation(function(state,pos){
+				if(0==state){
+					map.setCenter(pos);
+				}
+			});
+		}
+	    
+		function createMarker(){
+			mui.getJSON('http://10.120.145.118:8080/tideServer/admin/base/zone/list',{},function(data){
+					addMarkers(data.list);
+				}
+			);
+		}
+		
+		function addMarkers(markers){
+		    for(var i = 0; i < markers.length; i++){
+		    	var mark = markers[i];
+		    	var point = new plus.maps.Marker(new plus.maps.Point(mark.lng,mark.lat));
+			    point.setIcon("../image/mark48.png");
+			    point.bringToTop();
+			    map.addOverlay(point);
+			    
+			    markClick(point,mark);
+		    }
+		}
+		
+		function markClick(point, mark){
+			point.onclick = function ( marker ) {
+				map.setCenter(marker.getPoint());
+				if(wMarkSub != null){
+					ws.remove(wMarkSub);
+					wMarkSub = null;
+				}
+				createMarkSubview(mark);
+			}
+		}
+		
+		function createMarkSubview(mark){
+			var bottomoffset='1px';
+			if(plus.navigator.isImmersedStatusbar()){// 兼容immersed状态栏模式
+				topoffset=(Math.round(plus.navigator.getStatusbarHeight())+1)+'px';
+			}
+			if(wMarkSub == null){
+				wMarkSub=plus.webview.create('maps_mark_sub.html','mark',{bottom:bottomoffset,height:'160px',position:'absolute',scrollIndicator:'none',background:'transparent'},{marker:mark});
+				ws.append(wMarkSub);
+			}
+		}
+		
+		function createSearchSubview(){
+			// 创建加载内容窗口
+			var topoffset='4px';
+			if(plus.navigator.isImmersedStatusbar()){// 兼容immersed状态栏模式
+				topoffset=(Math.round(plus.navigator.getStatusbarHeight())+44)+'px';
+			}
+			var wsub=plus.webview.create('maps_search_sub.html','sub',{top:topoffset,height:'50px',position:'absolute',scrollIndicator:'none',background:'transparent'});
+			ws.append(wsub);
+		}
+		</script>
+	</body>
+	<script type="text/javascript" src="../js/immersed.js" ></script>
+</html>

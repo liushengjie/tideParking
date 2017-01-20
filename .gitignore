@@ -136,3 +136,5 @@ pip-log.txt
 .mr.developer.cfg
 
 .svn
+.setting
+node_modules

@@ -1,0 +1,97 @@
+<script type="text/javascript">
+$('#j_datagrid').datagrid({
+    gridTitle : '车位管理',
+    dataUrl: '/tideServer/admin/base/member/list',
+    loadType: 'get',
+    columns: [
+        {
+            name: 'id',
+            label: '车位编号',
+            align: 'center',
+            width: 70,
+            edit: false,
+            add: false
+        },
+        {
+            name: 'zoneName',
+            label: '小区',
+            align: 'center',
+            width: 150,
+            edit:false,
+            rule:'required,mobile'
+        },
+        {
+            name: 'userName',
+            label: '业主姓名',
+            align: 'center',
+            width: 150
+        },
+        {
+            name: 'parkingCode',
+            label: '车位编码,
+            align: 'center',
+            width: 150
+        },     
+         {
+            name: 'currentStatus',
+            label: '实时状态',
+            type: 'select',
+            align: 'center',
+            width: 45,
+            items: [{'1':'空闲}, {'2':'占用'}],
+            render: function(value) {
+                return String(value) == '1' ? '空闲' : '占用'
+            }
+        },
+        {
+            name: 'status',
+            label: '状态',
+            type: 'select',
+            align: 'center',
+            width: 45,
+            items: [{'1':'启用'}, {'2':'禁用'}],
+            render: function(value) {
+                return String(value) == '1' ? '启用' : '禁用'
+            }
+        }
+    ],
+    paging: {pageSize:15},
+    height: '100%',
+    tableWidth:'99%',
+    showToolbar: true,
+    toolbarItem: 'add,edit,|,refresh',
+    local: 'local',
+    filterThead: false,
+    sortAll: true,
+    filterAll: true,
+    linenumberAll: true,
+    showCheckboxcol: true,
+    columnLock: false,
+    editUrl: '/tideServer/admin/base/member/saveOrUpdate',
+    editMode: 'dialog'
+})
+
+$(document).on('bjui.beforeCloseDialog', function(e) {
+    var $dialog = $(e.target)
+    $('#j_datagrid').datagrid('refresh')
+})
+
+</script>
+<div class="bjui-pageHeader">
+   <form name="searchForm" data-toggle="ajaxsearch" data-options="{searchDatagrid:$.CurrentNavtab.find('#j_datagrid')}">
+        <div class="bjui-searchBar">
+            <label>小区名称：</label><input type="text" value="" name="phone" size="10">&nbsp;
+            <label>会员姓名：</label><input type="text" value="" name="userName" size="10">&nbsp;
+            <label>会员ID：</label><input type="text" value="" name="userNo" size="10">&nbsp;
+
+			<button type="submit" class="btn-default" data-icon="search">
+				查询
+			</button>&nbsp; 
+			
+			<button type="reset" class="btn-orange" data-icon="times">重置</button>
+        </div>
+    </form>
+</div>
+<div class="bjui-pageContent">
+	<table id="j_datagrid" class="table table-bordered"></table>
+</div>

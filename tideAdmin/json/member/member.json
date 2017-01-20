@@ -1,0 +1,18 @@
+{
+    "list": [
+    {
+      "id": "1",
+      "phone": "15830151355",
+      "userNo": "liushengjie",
+      "password": "123456",
+      "email": "liushengjie@email.com",
+      "userName": "刘胜杰",
+      "gender": "1",
+      "img": null,
+      "weId": "xxx",
+      "qq": "555326870",
+      "createTime": "2015-05-20 12:33:44",
+      "status": "1"
+    }
+  ]
+}

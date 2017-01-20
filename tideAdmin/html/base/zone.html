@@ -1,0 +1,202 @@
+<script type="text/javascript">
+var opts = 
+{   width : 290,
+	height: 105,     
+	title : "停车场" 
+};
+var map = new BMap.Map("allmap",{
+	enableMapClick: false
+});
+map.centerAndZoom(new BMap.Point(116.404, 39.915), 13);
+map.addControl(new BMap.MapTypeControl());
+map.setCurrentCity("北京");
+map.enableScrollWheelZoom(true);
+var myCity = new BMap.LocalCity();
+myCity.get(function (result){
+	var cityName = result.name;
+	map.setCenter(cityName);
+});
+
+BJUI.ajax('doajax', {
+    url       : '/tideServer/admin/base/zone/list',
+    type      : 'get',
+    cache     : false,
+    dataType  : 'json',
+    okCallback: function(response) {
+    	$('#zone_datagrid').datagrid({
+		    gridTitle : '小区停车场管理',
+		    data: response,
+		    dataUrl: '/tideServer/admin/base/zone/list',
+		    loadType: 'get',
+		    dataType: 'json',
+		    columns: [
+		        {
+		            name: 'id',
+		            label: '停车场编号',
+		            align: 'center',
+		            width: 70,
+		            edit: false,
+		            add: false
+		        },
+		        {
+		            name: 'propertyId',
+		            label: '物业ID',
+		            align: 'center',
+		            hide: true,
+		            width: 150
+		        },
+		        {
+		            name: 'propertyName',
+		            label: '归属物业',
+		            align: 'center',
+		            width: 150,
+		            type:'findgrid',
+		            attrs:{ 
+			        	"data-options":{
+			                include: 'propertyId:id,propertyName',
+			                dialogOptions: {title:'选择物业'},
+			            	gridOptions:{
+			                    local: 'local',
+			                    loadType: 'get',
+			                    dataUrl: '/tideServer/admin/base/property/list',
+			                    columns: [
+			                        {name:'id', label:'物业编号', width:100},
+						            {name:'propertyName', label:'物业名称'},
+						            {name:'contacts', label:'联系人'},
+						            {name:'phone', label:'联系人电话'},
+						            {name:'addr', label:'地址'}
+			                    ],
+			                    paging: {pageSize:15},
+							    height: '100%',
+							    tableWidth:'100%',
+							    showToolbar: true,
+							    toolbarItem: 'refresh',
+							    filterThead: false,
+							    sortAll: true,
+							    filterAll: true,
+							    linenumberAll: true,
+							    columnLock: false
+			                },
+						    empty:false
+			            }
+		        	}
+		        },
+		        {
+		            name: 'name',
+		            label: '停车场名称',
+		            align: 'center',
+		            width: 150,
+		            rule:'required'
+		        },
+		        {
+		            name: 'addr',
+		            label: '停车场地址',
+		            align: 'center',
+		            width: 150
+		        },
+		        {
+		            name: 'lat',
+		            label: '经度',
+		            align: 'center',
+		            width: 160
+		        },
+		        {
+		            name: 'lng',
+		            label: '纬度',
+		            align: 'center',
+		            width: 160
+		        },
+		        {
+		            name: 'status',
+		            label: '状态',
+		            type: 'select',
+		            align: 'center',
+		            width: 45,
+		            items: [{'1':'启用'}, {'2':'禁用'}],
+		            render: function(value) {
+		                return String(value) == '1' ? '启用' : '禁用'
+		            }
+		        }
+		    ],
+		    paging: {pageSize:15},
+		    height: '40%',
+		    tableWidth:'99%',
+		    showToolbar: true,
+		    toolbarItem: 'edit,|,refresh',
+		    local: 'local',
+		    filterThead: false,
+		    sortAll: true,
+		    filterAll: true,
+		    linenumberAll: true,
+		    showCheckboxcol: true,
+		    columnLock: false,
+		    editUrl: '/tideServer/admin/base/zone/saveOrUpdate',
+		    editMode: 'dialog'
+		})
+    	for(var i=0; i < response.list.length; i++){
+    		var marker = new BMap.Marker(new BMap.Point(response.list[i].lng,response.list[i].lat)); 
+    		map.addOverlay(marker);  
+    		var content = '<div style="margin:0;line-height:20px;padding:2px;">' +
+		                  '<img src="../images/loginbg_09.jpg" alt="" style="float:right;zoom:1;overflow:hidden;width:70px;height:70px;margin-left:3px;"/>' +
+		                  '小区名称：'+response.list[i].name+'<br/>地址：'+response.list[i].addr+'<br/>所属物业：' + response.list[i].propertyName +
+		                  '</div>';
+            addMarkerClick(marker, content);
+    	}
+    	
+		map.addEventListener("click", function (e){
+			if(!e.overlay){
+				BJUI.dialog({
+			        id:'dialog_zone',
+			        //target:'#dialog_zone',
+			        url:'html/base/dialog_zone.html',
+			        title:'小区停车场管理',
+			        width:600,
+			        height:200,
+			        onLoad: function($dialog){
+			        	$dialog.find("input[name='lat']").val(e.point.lat)
+			        	$dialog.find("input[name='lng']").val(e.point.lng)
+			        }
+			    })
+			}
+		});
+    }
+});
+
+var addMarkerClick = function(marker, content){
+	marker.addEventListener("click",function(e){
+		openInfo(content,e)}
+	);
+}
+var openInfo = (content,e) => {
+	var p = e.target;
+	var point = new BMap.Point(p.getPosition().lng, p.getPosition().lat);
+	var infoWindow = new BMap.InfoWindow(content,opts);  // 创建信息窗口对象 
+	map.openInfoWindow(infoWindow,point); //开启信息窗口
+}
+
+$(document).on('bjui.beforeCloseDialog', function(e) {
+    var $dialog = $(e.target)
+    //$(this).navtab('refresh');
+})
+</script>
+
+<div class="bjui-pageContent">
+	<div id="allmap"></div>
+	<div style="margin-top: 5px;">
+		<form name="searchForm" data-toggle="ajaxsearch" data-options="{searchDatagrid:$.CurrentNavtab.find('#zone_datagrid')}">
+	        <div class="bjui-searchBar">
+	            <label>停车场名称：</label><input type="text" value="" name="name" size="10">&nbsp;
+	            <label>所属物业：</label><input type="text" value="" name="propertyName" size="10">&nbsp;
+	            <label>地址：</label><input type="text" value="" name="addr" size="10">&nbsp;
+				
+				<button type="submit" class="btn-default" data-icon="search">
+					查询
+				</button>&nbsp; 
+				
+				<button type="reset" class="btn-orange" data-icon="times">重置</button>
+	        </div>
+	    </form>
+	</div>
+	    
+	<table id="zone_datagrid" class="table table-bordered"></table>
+</div>

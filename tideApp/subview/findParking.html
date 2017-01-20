@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>Hello MUI</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="stylesheet" href="../css/mui.css">
+		<style>
+			.mui-table h4,.mui-table h5,.mui-table .mui-h5,.mui-table .mui-h6,.mui-table p{
+		        margin-top: 0;
+		    }
+		    .mui-table h4{
+		        line-height: 21px;
+		        font-weight: 500;
+		        font-size: 16px;
+		    }
+		
+		    .mui-table .oa-icon{
+		        position: absolute;
+		        right:0;
+		        bottom: 0;
+		    }
+		    .mui-table .oa-icon-star-filled{
+		        color:#f14e41;
+		    }
+		</style>
+	</head>
+
+	<body>
+		<div id="pullrefresh" class="mui-content mui-scroll-wrapper">
+			<div class="mui-scroll">
+				<ul class="mui-table-view mui-table-view-striped mui-table-view-condensed">
+					<li class="mui-table-view-cell">
+			            <div class="mui-table">
+			                <div class="mui-table-cell mui-col-xs-10">
+			                	<img class="mui-media-object mui-pull-left" src="../image/yatai.jpg">
+			                    <h4 class="mui-ellipsis">停车场（全通公司）</h4>
+			                    <p class="mui-h6 mui-ellipsis">石家庄市青园街220号</p>
+			                </div>
+			                <div class="mui-table-cell mui-col-xs-2 mui-text-right">
+			                    <span class="mui-h5 mui-icon mui-icon-paperplane">330m</span>
+			                </div>
+			            </div>
+			        </li>
+			        <li class="mui-table-view-cell">
+			            <div class="mui-table">
+			                <div class="mui-table-cell mui-col-xs-10 mui-media">
+			                	<img class="mui-media-object mui-pull-left" src="../image/yatai.jpg">
+			                    <h4 class="mui-ellipsis-2">神州七星酒店-停车场</h4>
+			                    <p class="mui-h6 mui-ellipsis">河北省石家庄市裕华区裕华东路210号</p>
+			                </div>
+			                <div class="mui-table-cell mui-col-xs-2 mui-text-right">
+			                    <span class="mui-h5 mui-icon mui-icon-paperplane">330m</span>
+			                </div>
+			            </div>
+			        </li>
+			        <li class="mui-table-view-cell">
+			            <div class="mui-table">
+			                <div class="mui-table-cell mui-col-xs-10">
+			                	<img class="mui-media-object mui-pull-left" src="../image/yatai.jpg">
+			                    <h4 class="mui-ellipsis-2">亚太大酒店-地下停车场</h4>
+			                    <p class="mui-h6 mui-ellipsis">河北省石家庄市裕华区槐中路128号</p>
+			                </div>
+			                <div class="mui-table-cell mui-col-xs-2 mui-text-right">
+			                    <span class="mui-h5 mui-icon mui-icon-paperplane">330m</span>
+			                </div>
+			            </div>
+			        </li>
+			        <li class="mui-table-view-cell">
+			            <div class="mui-table">
+			                <div class="mui-table-cell mui-col-xs-10">
+			                	<img class="mui-media-object mui-pull-left" src="../image/yatai.jpg">
+			                    <h4 class="mui-ellipsis-2">报业大厦-停车场</h4>
+			                    <p class="mui-h6 mui-ellipsis">河北省去石家庄市裕华区裕华东路210号</p>
+			                </div>
+			                <div class="mui-table-cell mui-col-xs-2 mui-text-right">
+			                    <span class="mui-h5 mui-icon mui-icon-paperplane">330m</span>
+			                </div>
+			            </div>
+			        </li>
+			        <li class="mui-table-view-cell">
+			            <div class="mui-table">
+			                <div class="mui-table-cell mui-col-xs-10">
+			                	<img class="mui-media-object mui-pull-left" src="../image/yatai.jpg">
+			                    <h4 class="mui-ellipsis-2">专用停车场</h4>
+			                    <p class="mui-h6 mui-ellipsis">河北省石家庄市裕华区裕华东路80号</p>
+			                </div>
+			                <div class="mui-table-cell mui-col-xs-2 mui-text-right">
+			                    <span class="mui-h5 mui-icon mui-icon-paperplane">330m</span>
+			                </div>
+			            </div>
+			        </li>
+				</ul>
+			</div>
+		</div>
+		<script src="../js/mui.min.js"></script>
+		<script>
+			mui.init({
+				swipeBack: false,
+				pullRefresh: {
+					container: '#pullrefresh',
+					down: {
+						callback: pulldownRefresh
+					},
+					up: {
+						contentrefresh: '正在加载...',
+						callback: pullupRefresh
+					}
+				}
+			});
+			/**
+			 * 下拉刷新具体业务实现
+			 */
+			function pulldownRefresh() {
+				setTimeout(function() {
+					var table = document.body.querySelector('.mui-table-view');
+					var cells = document.body.querySelectorAll('.mui-table-view-cell');
+					for (var i = cells.length, len = i + 3; i < len; i++) {
+						var li = document.createElement('li');
+						li.className = 'mui-table-view-cell';
+						li.innerHTML = '<div class="mui-table"><div class="mui-table-cell mui-col-xs-10"><img class="mui-media-object mui-pull-left" src="../image/yatai.jpg">'+
+						               '<h4 class="mui-ellipsis-2">专用停车场</h4><p class="mui-h6 mui-ellipsis">河北省石家庄市裕华区裕华东路80号</p></div>'+
+						               '<div class="mui-table-cell mui-col-xs-2 mui-text-right"><span class="mui-h5 mui-icon mui-icon-paperplane">330m</span></div></div>';
+						//下拉刷新，新纪录插到最前面；
+						table.insertBefore(li, table.firstChild);
+					}
+					mui('#pullrefresh').pullRefresh().endPulldownToRefresh(); //refresh completed
+				}, 1000);
+			}
+			var count = 0;
+			/**
+			 * 上拉加载具体业务实现
+			 */
+			function pullupRefresh() {
+				setTimeout(function() {
+					mui('#pullrefresh').pullRefresh().endPullupToRefresh((++count > 2)); //参数为true代表没有更多数据了。
+					var table = document.body.querySelector('.mui-table-view');
+					var cells = document.body.querySelectorAll('.mui-table-view-cell');
+					for (var i = cells.length, len = i + 20; i < len; i++) {
+						var li = document.createElement('li');
+						li.className = 'mui-table-view-cell';
+						li.innerHTML = '<div class="mui-table"><div class="mui-table-cell mui-col-xs-10"><img class="mui-media-object mui-pull-left" src="../image/yatai.jpg">'+
+						               '<h4 class="mui-ellipsis-2">专用停车场</h4><p class="mui-h6 mui-ellipsis">河北省石家庄市裕华区裕华东路80号</p></div>'+
+						               '<div class="mui-table-cell mui-col-xs-2 mui-text-right"><span class="mui-h5 mui-icon mui-icon-paperplane">330m</span></div></div>';
+						table.appendChild(li);
+					}
+				}, 1000);
+			}
+		</script>
+	</body>
+</html>

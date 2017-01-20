@@ -1,0 +1,13 @@
+{
+   "list": [
+    {
+      "id": "1",
+      "memId": "12",
+      "userNo":"zhangshunli",
+      "zoneId": "123",
+      "zoneName":"天然城",
+      "status": "1",
+      "test":"dddd"
+    }
+  ]
+}

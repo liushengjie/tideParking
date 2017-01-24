@@ -1,0 +1,46 @@
+<script type="text/javascript">
+
+</script>
+<div class="bjui-pageHeader">
+   <form name="searchForm" data-toggle="ajaxsearch" data-options="{searchDatagrid:$.CurrentNavtab.find('#parking_datagrid')}">
+        <div class="bjui-searchBar">    
+        	<div class="row-input required">&nbsp;</div>
+            <div class="row-input required">
+            <label class="row-label">开始日期</label>&nbsp;
+            <input type="text" name="beginDate" id="beginDate" value="" data-toggle="datepicker" data-rule="required;date">
+            <label class="row-label">结束日期</label>&nbsp;
+            <input type="text" name="endDate" id="beginDate" value="" data-toggle="datepicker" data-rule="required;date">
+            </div>
+            <div class="row-input required">&nbsp;</div>
+            <div class="row-input required">
+            <label class="row-label">星 &nbsp&nbsp&nbsp&nbsp期</label>&nbsp;
+             <input type="checkbox" name="checkbox" id="checkbox1" value="1" data-toggle="icheck" data-label="周一">
+             <input type="checkbox" name="checkbox" id="checkbox1" value="2" data-toggle="icheck" data-label="周二">
+             <input type="checkbox" name="checkbox" id="checkbox1" value="3" data-toggle="icheck" data-label="周三">
+             <input type="checkbox" name="checkbox" id="checkbox1" value="4" data-toggle="icheck" data-label="周四">
+             <input type="checkbox" name="checkbox" id="checkbox1" value="5" data-toggle="icheck" data-label="周五">
+             <input type="checkbox" name="checkbox" id="checkbox1" value="6" data-toggle="icheck" data-label="周六">
+             <input type="checkbox" name="checkbox" id="checkbox1" value="7" data-toggle="icheck" data-label="周日">
+             </div>
+             <div class="row-input required">&nbsp;</div>
+             <div class="row-input required">
+             <label class="row-label"> &nbsp时间段</label>&nbsp;
+             上午:
+             <input type="text" value="09:00" data-toggle="datepicker" data-pattern="HH:mm" size="10">
+             <input type="text" value="" data-toggle="datepicker" data-pattern="HH:mm"size="10">
+             下午：
+             <input type="text" value="" data-toggle="datepicker" data-pattern="HH:mm"size="10">
+             <input type="text" value="18:00" data-toggle="datepicker" data-pattern="HH:mm"size="10">
+             </div>
+              <div class="row-input required">&nbsp;</div>
+               <div class="row-input required">&nbsp;</div>
+                <div class="row-input required">&nbsp;</div>
+             <div class="row-input required" align="center">
+             	<button type="submit" class="btn-default" >
+				保存
+			</button> </div>
+           	
+        </div>
+    </form>
+</div>
+

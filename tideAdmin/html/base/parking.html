@@ -1,7 +1,7 @@
 <script type="text/javascript">
-$('#j_datagrid').datagrid({
+$('#parking_datagrid').datagrid({
     gridTitle : '车位管理',
-    dataUrl: '/tideServer/admin/base/member/list',
+    dataUrl: 'json/member/parking.json',
     loadType: 'get',
     columns: [
         {
@@ -28,17 +28,24 @@ $('#j_datagrid').datagrid({
         },
         {
             name: 'parkingCode',
-            label: '车位编码,
+            label: '车位编码',
             align: 'center',
             width: 150
         },     
+         {
+            name: 'id',
+            label: '设置',
+            render:function(value){return "<button type='button' class='btn-default' data-toggle='dialog' data-options=\"{id:'test_dialog1', url:'html/base/parkingSet.html',width:'590', title:'车位设置'}\">设置</button>" },
+            align: 'center',
+            width: 150
+        },  
          {
             name: 'currentStatus',
             label: '实时状态',
             type: 'select',
             align: 'center',
             width: 45,
-            items: [{'1':'空闲}, {'2':'占用'}],
+            items: [{'1':'空闲'}, {'2':'占用'}],
             render: function(value) {
                 return String(value) == '1' ? '空闲' : '占用'
             }
@@ -78,7 +85,7 @@ $(document).on('bjui.beforeCloseDialog', function(e) {
 
 </script>
 <div class="bjui-pageHeader">
-   <form name="searchForm" data-toggle="ajaxsearch" data-options="{searchDatagrid:$.CurrentNavtab.find('#j_datagrid')}">
+   <form name="searchForm" data-toggle="ajaxsearch" data-options="{searchDatagrid:$.CurrentNavtab.find('#parking_datagrid')}">
         <div class="bjui-searchBar">
             <label>小区名称：</label><input type="text" value="" name="phone" size="10">&nbsp;
             <label>会员姓名：</label><input type="text" value="" name="userName" size="10">&nbsp;
@@ -93,5 +100,5 @@ $(document).on('bjui.beforeCloseDialog', function(e) {
     </form>
 </div>
 <div class="bjui-pageContent">
-	<table id="j_datagrid" class="table table-bordered"></table>
+	<table id="parking_datagrid" class="table table-bordered"></table>
 </div>

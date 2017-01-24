@@ -48,6 +48,7 @@
 				// 创建子窗口
 				createSearchSubview();
 				userLocation();
+				var routeObj = new plus.maps.Route( new plus.maps.Point(116.404,39.915), new plus.maps.Point(116.347496,39.970191) );
 				map.onclick = function( point ){
 					if(wMarkSub != null){
 						ws.remove(wMarkSub);
@@ -117,7 +118,7 @@
 				topoffset=(Math.round(plus.navigator.getStatusbarHeight())+1)+'px';
 			}
 			if(wMarkSub == null){
-				wMarkSub=plus.webview.create('maps_mark_sub.html','mark',{bottom:bottomoffset,height:'160px',position:'absolute',scrollIndicator:'none',background:'transparent'},{marker:mark,posa:posa});
+				wMarkSub=plus.webview.create('maps_mark_sub.html','mark',{bottom:bottomoffset,height:'160px',position:'absolute',scrollIndicator:'none',background:'transparent'},{marker:mark,posa:posa,map:map});
 				ws.append(wMarkSub);
 			}
 		}

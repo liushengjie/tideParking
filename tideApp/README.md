@@ -7,5 +7,5 @@
 3. 根据当前所在地寻找车位信息
 4. 扫码入库
 
-![screenshoot.PNG]({{site.baseurl}}/tideApp/screenshoot.PNG)
+![screenshoot.PNG](/screenshoot.PNG)
 

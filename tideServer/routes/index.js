@@ -1,3 +1,4 @@
 module.exports = {
-    '/admin': 'admin/routehub'
+    '/admin': 'admin/routehub',
+    '/app': 'app/routehub'
 };

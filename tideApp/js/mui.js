@@ -2999,6 +2999,10 @@ Function.prototype.bind = Function.prototype.bind || function(to) {
 							result = xhr.responseXML;
 						} else if(dataType === 'json') {
 							result = blankRE.test(result) ? null : $.parseJSON(result);
+							if(result.statusCode == '403'){
+								$.openWindow('/login.html');
+								return;
+							}
 						}
 					} catch(e) {
 						error = e;

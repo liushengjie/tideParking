@@ -18,7 +18,7 @@
 				background: #FFFFFF;
 			}
 		</style>
-		<script src="../js/mui.min.js"></script>
+		<script src="../js/mui.js"></script>
     	<link href="../css/mui.css" rel="stylesheet"/>
 	</head>
 	<body>
@@ -48,7 +48,6 @@
 				// 创建子窗口
 				createSearchSubview();
 				userLocation();
-				var routeObj = new plus.maps.Route( new plus.maps.Point(116.404,39.915), new plus.maps.Point(116.347496,39.970191) );
 				map.onclick = function( point ){
 					if(wMarkSub != null){
 						ws.remove(wMarkSub);
@@ -83,7 +82,7 @@
 		}
 	    
 		function createMarker(){
-			mui.getJSON('http://10.120.145.118:8080/tideServer/admin/base/zone/list',{},function(data){
+			mui.getJSON('http://10.120.145.118:8080/tideServer/app/base/zone/list',{},function(data){
 					addMarkers(data.list);
 				}
 			);

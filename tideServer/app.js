@@ -38,9 +38,9 @@ app.use(function (req, res, next) {
     var url = req.originalUrl;
    	var urlPattern=/admin*/;
 
-    if(!urlPattern.test(url)){ 
-        return res.json({ statusCode: 403, msg: 'forbidden', error: {}});
-    }
+//  if(!urlPattern.test(url)){ 
+//      return res.json({ statusCode: 403, msg: 'forbidden', error: {}});
+//  }
     next();
 });
 

@@ -7,6 +7,7 @@
 		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
 		<link href="../css/mui.css" rel="stylesheet" />
 		<script type="text/javascript" src="../js/common.js"></script>
+		<script src="../js/mui.min.js"></script>
 		<style>
 			html,
 			body {
@@ -26,21 +27,14 @@
 
 		<div class="mui-content">
 			<div class="mui-card">
-				<div class="mui-card-header"><span class="mui-icon mui-icon mui-icon-info">冀A 649YC</div>
+				<div class="mui-card-header">冀A649YC
+					<span class='mui-badge mui-badge-primary'>切换车牌</span>
+				</div>
 				<div class="mui-card-content">
 					<div class="mui-card-content-inner mui-navigate-right" id="content">
 						<ul class="mui-table-view">
 							<li class="mui-table-view-cell">
-								<p>业主姓名：xxx</p>
-							</li>
-							<li class="mui-table-view-cell">
-								<p>联系电话：xxxxxxxxx</p>
-							</li>
-							<li class="mui-table-view-cell">
-								<p class="mui-navigate-right">价格：5元/小时</p>
-							</li>
-							<li class="mui-table-view-cell">
-								<p>车位时间：(早8:00--晚6:00)</p>
+								<p>车库名称：亚太大酒店停车场</p>
 							</li>
 							<li class="mui-table-view-cell">
 								<p>地址：河北省石家庄市青园街亚太大酒店</p>
@@ -51,12 +45,25 @@
 							<li class="mui-table-view-cell">
 								<p>发布时间：2016年12月20日</p>
 							</li>
+							<li class="mui-table-view-cell">
+								<p id="fee" class="mui-navigate-right">收费标准说明</p>
+							</li>
 						</ul>
 					</div>
 				</div>
 			</div>
+			<div class="mui-card">
+				<div class="mui-card-content">
+					<div class="mui-card-content-inner" id="content">
+						<p style="color: red;">温馨提示：</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							车辆停入车位后，请点击下方“扫码停车”扫描车位上方二维码。</br>
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						若您选择“车位编号免扫省时”或三分钟内未扫描车位编号标牌，系统则按“入库起杆到出库起杆时间”计时和“蓝色车位租费标准”计费核收该会员本次停车费用。</p>
+					</div>
+				</div>
+			</div>
 		</div>
-		<script src="../js/mui.min.js"></script>
+
 		<script type="text/javascript">
 			mui.init({
 				swipeBack: true //启用右滑关闭功能
@@ -68,13 +75,28 @@
 				if(plus.navigator.isImmersedStatusbar()){// 兼容immersed状态栏模式
 					topoffset=(Math.round(plus.navigator.getStatusbarHeight())+1)+'px';
 				}
-				var wsub=plus.webview.create('maps_scan_sub.html','sub',{bottom:bottomoffset,height:'110px',
+				var wsub=plus.webview.create('scan_sub.html','sub',{bottom:bottomoffset,height:'110px',
 	                            position:'absolute',scrollIndicator:'none',background:'transparent'},
 								{scanText:'扫码停车',forward:'payment.html'});
 				ws.append(wsub);
 			});
 			
-			
+			document.getElementById("fee").addEventListener('tap', function() {
+				mui.alert('<ul class="mui-table-view">'+
+						'<li class="mui-table-view-cell">'+
+							'<p>空余时间区段1～4小时 <span class="mui-badge mui-badge-warning">¥0.15/5分钟</span></p>'+
+						'</li>'+
+						'<li class="mui-table-view-cell">'+
+							'<p>空余时间区段4～8小时<span class="mui-badge mui-badge-success">¥0.16/5分钟</span></p>'+
+						'</li>'+
+						'<li class="mui-table-view-cell">'+
+							'<p>空余时间区段8～24小时<span class="mui-badge mui-badge-purple">¥0.17/5分钟</span></p>'+
+						'</li>'+
+						'<li class="mui-table-view-cell">'+
+							'<p>空余时间区段24～88小时<span class="mui-badge mui-badge-primary">¥0.18/5分钟</span></p>'+
+						'</li>'+
+					'</ul>', '收费标准说明', null,null,'div');
+			});
 		</script>
 	</body>
 

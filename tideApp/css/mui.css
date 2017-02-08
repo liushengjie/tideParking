@@ -2060,7 +2060,6 @@ input[type='submit']:enabled:active, input[type='submit'].mui-active:enabled,
 {
     position: relative;
 
-    #padding: 15px;
     padding-top:15px;
     padding-left: 15px;
 }

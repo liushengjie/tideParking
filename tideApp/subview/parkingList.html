@@ -28,30 +28,52 @@
 			<div id="slider" class="mui-slider">
 				<div class="mui-slider-group mui-slider-loop">
 					<div class="mui-slider-item">
-						<img id="img1" src="../image/yatai.jpg" width="100%" height="230px"/>
-						<p class="mui-slider-title">亚太停车场</p>
+						<img id="img1" src="../image/yatai.jpg" width="100%" height="210px"/>
 					</div>
 				</div>
 			</div>
-
 			<ul class="mui-table-view">
-				<li class="mui-table-view-cell" onclick="openDetail();">
-					<p>车位编码：B-01&nbsp;&nbsp;&nbsp;&nbsp;(早8:00--晚6:00)</p><span class="mui-badge mui-badge-primary">可用</span>
-				</li>
-				<li class="mui-table-view-cell" onclick="openDetail();">
-					<p>车位编码：B-02&nbsp;&nbsp;&nbsp;&nbsp;(早8:00--晚6:00)</p><span class="mui-badge mui-badge-primary">可用</span>
-				</li>
-				<li class="mui-table-view-cell" onclick="openDetail();">
-					<p>车位编码：B-03&nbsp;&nbsp;&nbsp;&nbsp;(早8:00--晚6:00)</p><span class="mui-badge mui-badge-primary">可用</span>
-				</li>
-				<li class="mui-table-view-cell" onclick="openDetail();">
-					<p>车位编码：B-04&nbsp;&nbsp;&nbsp;&nbsp;(早8:00--晚6:00)</p><span class="mui-badge mui-badge-primary">可用</span>
-				</li>
-				<li class="mui-table-view-cell" onclick="openDetail();">
-					<p>车位编码：B-05&nbsp;&nbsp;&nbsp;&nbsp;(早8:00--晚6:00)</p><span class="mui-badge mui-badge-primary">可用</span>
-				</li>
-	
+			    <li class="mui-table-view-cell mui-media">
+			        <a href="javascript:;">
+			            <img class="mui-media-object mui-pull-left" src="../image/parking125.png">
+			            <div class="mui-media-body">
+			             	亚太大酒店停车场
+			                <p class='mui-ellipsis'>发布日期：2017年1月12日  18:22:00</p>
+			            </div>
+			        </a>
+			    </li>
 			</ul>
+			<div class="mui-card">
+				<div class="mui-card-content">
+					<ul class="mui-table-view">
+						<li class="mui-table-view-cell" onclick="openDetail('detail.html');">
+							<p>车位编号：B-01&nbsp;&nbsp;&nbsp;&nbsp;(早8:00--晚6:00)</p><span class="mui-badge mui-badge-primary">可用</span>
+						</li>
+						<li class="mui-table-view-cell" onclick="openDetail('detail.html');">
+							<p>车位编号：B-02&nbsp;&nbsp;&nbsp;&nbsp;(早8:00--晚6:00)</p><span class="mui-badge mui-badge-primary">可用</span>
+						</li>
+						<li class="mui-table-view-cell" onclick="openDetail('detail.html');">
+							<p>车位编号：B-03&nbsp;&nbsp;&nbsp;&nbsp;(早8:00--晚6:00)</p><span class="mui-badge mui-badge-primary">可用</span>
+						</li>
+						<li class="mui-table-view-cell" onclick="openDetail('detail.html');">
+							<p>车位编号：B-04&nbsp;&nbsp;&nbsp;&nbsp;(早8:00--晚6:00)</p><span class="mui-badge mui-badge-primary">可用</span>
+						</li>
+						<li class="mui-table-view-cell" onclick="openDetail('detail.html');">
+							<p>车位编号：B-05&nbsp;&nbsp;&nbsp;&nbsp;(早8:00--晚6:00)</p><span class="mui-badge mui-badge-primary">可用</span>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<div class="mui-card">
+				<div class="mui-card-content">
+					<ul class="mui-table-view">
+						<li class="mui-table-view-cell">
+							<p id="fee" class="mui-navigate-right">收费标准说明</p>
+						</li>
+					</ul>
+				</div>
+			</div>
+			
 		</div>
 		<script src="../js/mui.min.js"></script>
 		<script type="text/javascript">
@@ -62,12 +84,28 @@
 			mui.plusReady(function() {
 			});
 			
-			function openDetail (){
+			function openDetail (url){
 				mui.openWindow({
-				    url: 'detail.html', 
-				    id:'detail'
+				    url: url, 
+				    id: url
 				});
-			}
+			};
+			document.getElementById("fee").addEventListener('tap', function() {
+				mui.alert('<ul class="mui-table-view">'+
+						'<li class="mui-table-view-cell">'+
+							'<p>空余时间区段1～4小时 <span class="mui-badge mui-badge-warning">¥0.15/5分钟</span></p>'+
+						'</li>'+
+						'<li class="mui-table-view-cell">'+
+							'<p>空余时间区段4～8小时<span class="mui-badge mui-badge-success">¥0.16/5分钟</span></p>'+
+						'</li>'+
+						'<li class="mui-table-view-cell">'+
+							'<p>空余时间区段8～24小时<span class="mui-badge mui-badge-purple">¥0.17/5分钟</span></p>'+
+						'</li>'+
+						'<li class="mui-table-view-cell">'+
+							'<p>空余时间区段24～88小时<span class="mui-badge mui-badge-primary">¥0.18/5分钟</span></p>'+
+						'</li>'+
+					'</ul>', '收费标准说明', null,null,'div');
+			});
 		</script>
 	</body>
 

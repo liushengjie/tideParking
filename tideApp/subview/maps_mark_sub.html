@@ -32,7 +32,8 @@
 			mui.plusReady(function() {
 				var marker = plus.webview.currentWebview().marker;
 				var pos = plus.webview.currentWebview().posa;
-				document.getElementById('content').innerHTML = marker.name + "<p>收费停车场&nbsp;&nbsp;距离：330米</br>"+ marker.addr + "</p>";
+				document.getElementById('content').innerHTML = marker.name + "&nbsp;<span class='mui-badge mui-badge-primary'>空：5车位</span>" +
+				                            "<p>收费停车场&nbsp;&nbsp;距离：330米</br>"+ marker.addr + "</p>";
 				document.getElementById('content').addEventListener('tap', function() {
 				  //打开关于页面
 				  mui.openWindow({

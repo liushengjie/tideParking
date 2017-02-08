@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<meta name="HandheldFriendly" content="true"/>
+		<meta name="MobileOptimized" content="320"/>
+		<link href="../css/mui.css" rel="stylesheet" />
+		<script type="text/javascript" src="../js/common.js"></script>
+		<style>
+			html,
+			body {
+				background-color: #efeff4;
+			}
+			header{
+				background-color: #00B38C;
+			}
+			.mui-card-footer{
+				background: white;
+			}
+		</style>
+	</head>
+	<body>
+		<header id="header" class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title">停车位设置</h1>
+		</header>
+
+		<div class="mui-content">
+			<div class="mui-card">
+				<div class="mui-card-content" style="text-align: center;">
+					<button type="button" class="mui-btn mui-btn-success mui-badge-primary">新建规则</button>
+					<button type="button" class="mui-btn  mui-badge-primary">删除所有规则</button>
+				</div>
+			</div>
+			
+			<div class="mui-card">
+				<div class="mui-card-header">
+					每周  8:00 ~ 20:00
+				</div>
+				<div class="mui-card-content">
+					<div class="mui-input-row mui-checkbox">
+					  <label>星期一</label>
+					  <input name="checkbox1" value="1" type="checkbox" checked disabled="disabled">
+					</div>
+					<div class="mui-input-row mui-checkbox">
+					  <label>星期二</label>
+					  <input name="checkbox1" value="2" type="checkbox" checked disabled="disabled">
+					</div>
+					<div class="mui-input-row mui-checkbox">
+					  <label>星期三</label>
+					  <input name="checkbox1" value="3" type="checkbox" checked disabled="disabled">
+					</div>
+					<div class="mui-input-row mui-checkbox">
+					  <label>星期四</label>
+					  <input name="checkbox1" value="4" type="checkbox" checked disabled="disabled">
+					</div>
+					<div class="mui-input-row mui-checkbox">
+					  <label>星期五</label>
+					  <input name="checkbox1" value="5" type="checkbox" checked disabled="disabled">
+					</div>
+					<div class="mui-input-row mui-checkbox">
+					  <label>星期六</label>
+					  <input name="checkbox1" value="6" type="checkbox" disabled="disabled">
+					</div>
+					<div class="mui-input-row mui-checkbox">
+					  <label>星期日</label>
+					  <input name="checkbox1" value="7" type="checkbox" disabled="disabled">
+					</div>
+				</div>
+				<div class="mui-card-footer">
+					<button type="button" class="mui-btn mui-badge-primary">修改</button>
+					<button type="button" class="mui-btn mui-badge-primary">删除</button>
+				</div>
+			</div>
+			
+			<!--<div class="mui-card">
+				<div class="mui-card-header">
+					每周
+				</div>
+				<div class="mui-card-content">
+					<div class="mui-input-row mui-checkbox">
+					  <label>星期一  8:00~20:00</label>
+					  <input name="checkbox1" value="1" type="checkbox" checked disabled="disabled">
+					</div>
+					<div class="mui-input-row mui-checkbox">
+					  <label>星期二  8:00~10:00  12:00~16:00</label>
+					  <input name="checkbox1" value="2" type="checkbox" checked disabled="disabled">
+					</div>
+					<div class="mui-input-row mui-checkbox">
+					  <label>星期三  8:00~14:20</label>
+					  <input name="checkbox1" value="3" type="checkbox" checked disabled="disabled">
+					</div>
+					<div class="mui-input-row mui-checkbox">
+					  <label>星期四  18:00~20:00</label>
+					  <input name="checkbox1" value="4" type="checkbox" checked disabled="disabled">
+					</div>
+					<div class="mui-input-row mui-checkbox">
+					  <label>星期五  5:00~15:00</label>
+					  <input name="checkbox1" value="5" type="checkbox" checked disabled="disabled">
+					</div>
+					<div class="mui-input-row mui-checkbox">
+					  <label>星期六</label>
+					  <input name="checkbox1" value="6" type="checkbox" disabled="disabled">
+					</div>
+					<div class="mui-input-row mui-checkbox">
+					  <label>星期日</label>
+					  <input name="checkbox1" value="7" type="checkbox" disabled="disabled">
+					</div>
+				</div>
+				<div class="mui-card-footer">
+					<button type="button" class="mui-btn mui-btn-success">修改</button>
+					<button type="button" class="mui-btn mui-btn-warning">删除</button>
+				</div>
+			</div>-->
+			
+			<!--<div class="mui-card">
+				<div class="mui-card-header">
+					工作日
+				</div>
+				<div class="mui-card-content">
+					<ul class="mui-table-view">
+						<li class="mui-table-view-cell">
+							8:00~14:00
+						</li>
+						<li class="mui-table-view-cell">
+							18:00~20:00
+						</li>
+					</ul>					
+				</div>
+				<div class="mui-card-footer">
+					<button type="button" class="mui-btn mui-btn-success">修改</button>
+					<button type="button" class="mui-btn mui-btn-warning">删除</button>
+				</div>
+			</div>
+			
+			<div class="mui-card">
+				<div class="mui-card-header">
+					单日（2017-02-28）
+				</div>
+				<div class="mui-card-content">
+					<ul class="mui-table-view">
+						<li class="mui-table-view-cell">
+							18:00~20:00
+						</li>
+					</ul>					
+				</div>
+				<div class="mui-card-footer">
+					<button type="button" class="mui-btn mui-btn-success">修改</button>
+					<button type="button" class="mui-btn mui-btn-warning">删除</button>
+				</div>
+			</div>-->
+			
+		<script src="../js/mui.min.js"></script>
+		<script>
+			mui.init({
+				swipeBack:true //启用右滑关闭功能
+			});
+		</script>
+		</div>
+	</body>
+</html>

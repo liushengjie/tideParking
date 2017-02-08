@@ -43,13 +43,24 @@
 			.oa-contact-name, oa-contact-position {
 				float: left;
 			}
+			
+			.mui-media-body{
+				float: right;
+			}
 		</style>
 	</head>
 
 	<body>
 		<div class="mui-content">
 			<div class="mui-card">
-				<div class="mui-card-header mui-card-media" style="height:40vw;background-image:url(../image/parking.png)"></div>
+				<div class="mui-card-header mui-card-media" style="height:40vw;background-image:url(../image/parking.png)">
+					<div class="mui-media-body">
+						<button type="button" class="mui-btn mui-btn-primary" id="parking_place_setting1">
+							<span class="mui-icon mui-icon mui-icon-gear"></span>
+							车位时间设置
+						</button>
+					</div>
+				</div>
 				<div class="mui-card-content">
 					<div class="mui-card-content-inner">
 						<h4>神州七星酒店-停车场</h4>
@@ -60,7 +71,7 @@
 				</div>
 				<div class="mui-card-footer">
 					<p style="color:white">详细地址<br>河北省石家庄市裕华区裕华东路210号</p>
-					<a class="mui-card-link"><span class="mui-badge mui-badge-warning">5</span></a>
+					<a class="mui-card-link" id="a1"><span class="mui-badge mui-badge-warning">订单：3笔</span></a>
 				</div>
 			</div>
 		</div>
@@ -69,6 +80,24 @@
 	<script>
 		mui.init({
 			swipeBack:true //启用右滑关闭功能
+		});
+		
+		mui.plusReady(function() {
+			document.getElementById('a1').addEventListener('tap', function() {
+			  //打开关于页面
+			  mui.openWindow({
+			    url: 'order_list.html', 
+			    id:'order_list'
+			  });
+			});
+			
+			document.getElementById('parking_place_setting1').addEventListener('tap', function() {
+			  //打开关于页面
+			  mui.openWindow({
+			    url: 'parking_place_setting.html', 
+			    id:'parking_place_setting'
+			  });
+			});
 		});
 	</script>
 </html>

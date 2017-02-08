@@ -16,7 +16,12 @@
 	    <ul class="nav">
 	        <li>
 	          <a href="#" onclick="clicked('barcode_scan.html',true,true);">
-	            <span id="scanText" class="screen-reader-text"></span>
+	            <span id="scanText" class="screen-reader-text">扫码停车</span>
+	          </a>
+	      	</li>
+	        <li>
+	          <a href="#" onclick="openPayment();">
+	            <span id="scanText" class="screen-reader-text">免扫省时</span>
 	          </a>
 	      	</li>
 	    </ul>
@@ -29,9 +34,13 @@
 		swipeBack: true //启用右滑关闭功能
 	});
 	mui.plusReady(function() {
-		var scanText = plus.webview.currentWebview().scanText;
-		document.getElementById('scanText').innerHTML = scanText;
 	});
+	function openPayment (){
+		mui.openWindow({
+		    url: 'payment.html', 
+		    id:'payment'
+		});
+	}
 	function scaned( t, r, f ) {
 		var url;
 		if(r == 'commingParking'){

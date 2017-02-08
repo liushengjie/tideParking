@@ -8,57 +8,62 @@
 		<meta name="apple-mobile-web-app-capable" content="yes">
 		<meta name="apple-mobile-web-app-status-bar-style" content="black">
 
-		<link rel="stylesheet" href="../css/mui.min.css">
+		<link rel="stylesheet" href="../css/mui.css">
 		<style>
 			html,body {
 				background-color: #efeff4;
-			}
-			.title{
-				margin: 20px 15px 10px;
-				color: #6d6d72;
-				font-size: 15px;
 			}
 		</style>
 	</head>
 
 	<body>
 		<div class="mui-content">
-			<ul class="mui-table-view">
-				<li class="mui-table-view-cell">
-					<a class="mui-navigate-right">
-						我的订单
-					</a>
-				</li>
-				<li class="mui-table-view-cell">
-					<a class="mui-navigate-right">
-						我的车位
-					</a>
-				</li>
-				<li class="mui-table-view-cell">
-					<a class="mui-navigate-right">
-						车辆管理
-					</a>
-				</li>
-				<li class="mui-table-view-cell">
-					<a class="mui-navigate-right">
-						我要投诉
-					</a>
-				</li>
-			</ul>
-			<ul class="mui-table-view" style="margin-top: 25px;">
-				<li class="mui-table-view-cell">
-					<a id="about" class="mui-navigate-right">
-						关于潮汐停车
-					</a>
-				</li>
-			</ul>
-			<ul class="mui-table-view" style="margin-top: 25px;">
-				<li class="mui-table-view-cell">
-					<a style="text-align: center;color: #FF3B30;">
-						退出登录
-					</a>
-				</li>
-			</ul>
+			<div class="mui-card">
+				<div class="mui-card-header mui-card-media" style="height:40vw;background-image:url(../image/020.png)">
+					<p style="color:whitesmoke">余额：¥19.4</p>
+				</div>
+				<div class="mui-card-content">
+					<div class="mui-card-content-inner">
+						<ul class="mui-table-view">
+							<li class="mui-table-view-cell">
+								<a id="order" class="mui-navigate-right" >
+									我的订单
+								</a>
+							</li>
+							<li class="mui-table-view-cell">
+								<a class="mui-navigate-right">
+									我的车位
+								</a>
+							</li>
+							<li class="mui-table-view-cell">
+								<a class="mui-navigate-right">
+									车辆管理
+								</a>
+							</li>
+							<li class="mui-table-view-cell">
+								<a class="mui-navigate-right">
+									我要投诉
+								</a>
+							</li>
+						</ul>
+						<ul class="mui-table-view" style="margin-top: 25px;">
+							<li class="mui-table-view-cell">
+								<a id="about" class="mui-navigate-right">
+									关于潮汐停车
+								</a>
+							</li>
+						</ul>
+						<ul class="mui-table-view" style="margin-top: 25px;">
+							<li class="mui-table-view-cell">
+								<a style="text-align: center;color: #FF3B30;">
+									退出登录
+								</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			
 		</div>
 		</style>
 	</body>
@@ -67,11 +72,18 @@
 		mui.init({
 			swipeBack:true //启用右滑关闭功能
 		});
+		document.getElementById("order").addEventListener('tap',function () {
+			mui.openWindow({
+			    url: 'order.html', 
+			    id:'order'
+			});
+		});
 		document.getElementById("about").addEventListener('tap',function () {
 			//获得主页面的webview
 			var main = plus.webview.currentWebview().parent();
 			//触发主页面的gohome事件
 			mui.fire(main,'gohome');
 		});
+		
 	</script>
 </html>

@@ -9,7 +9,7 @@ const morgan = require('morgan');
 const config = require('./config');
 const net = require('net');
 const cors = require('cors');
-const mongo = require('./libs/mongo');
+const redis = require('./libs/redis');
 const co = require('co');
 var sensorVal;
 

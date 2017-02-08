@@ -21,25 +21,27 @@
 	<body>
 		<header id="header" class="mui-bar mui-bar-nav">
 			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
-			<h1 class="mui-title">车位详情</h1>
+			<h1 class="mui-title">订单详情</h1>
 		</header>
 
 		<div class="mui-content">
-			<div id="slider" class="mui-slider">
-				<div class="mui-slider-group mui-slider-loop">
-					<div class="mui-slider-item">
-						<img id="img1" src="../image/parking.png" width="100%" height="230px"/>
-						<p class="mui-slider-title">车位编码：B-01</p>
-					</div>
-				</div>
-			</div>
-
+			<ul class="mui-table-view">
+			    <li class="mui-table-view-cell mui-media">
+			        <a href="javascript:;">
+			            <img class="mui-media-object mui-pull-left" src="../image/parking-logo.png">
+			            <div class="mui-media-body">
+			             	冀A 649YC
+			                <p class='mui-ellipsis'>未支付</p>
+			            </div>
+			        </a>
+			    </li>
+			</ul>
 			<ul class="mui-table-view">
 				<li class="mui-table-view-cell">
-					<p>业主姓名：xxx</p>
+					<p>停车费用：¥ 4.0</p>
 				</li>
 				<li class="mui-table-view-cell">
-					<p>联系电话：xxxxxxxxx</p>
+					<p>进入车场时间：2017-02-01 12:21:39</p>
 				</li>
 				<li class="mui-table-view-cell">
 					<p class="mui-navigate-right">价格：5元/小时</p>
@@ -48,17 +50,17 @@
 					<p>车位时间：(早8:00--晚6:00)</p>
 				</li>
 				<li class="mui-table-view-cell">
-					<p>地址：河北省石家庄市青园街亚太大酒店</p>
+					<p>订单状态：未离场</p>
 				</li>
 				<li class="mui-table-view-cell">
-					<p>车位描述：河北省石家庄市青园街亚太大酒店</p>
+					<p>订单号：63212154512135452135</p>
 				</li>
 				<li class="mui-table-view-cell">
-					<p>发布时间：2016年12月20日</p>
+					<p>下单时间：2017-02-01 12:21:39</p>
 				</li>
 			</ul>
 		</div>
-		<button id="scan" type="button" class="mui-btn mui-btn-danger mui-btn-block" onclick="clicked('barcode_scan.html',true,true);">扫码开杆</button>
+			
 		<script src="../js/mui.min.js"></script>
 		<script type="text/javascript">
 			mui.init({
@@ -66,14 +68,16 @@
 			});
 			
 			mui.plusReady(function() {
+				ws=plus.webview.currentWebview();
+				var bottomoffset='1px';
+				if(plus.navigator.isImmersedStatusbar()){// 兼容immersed状态栏模式
+					topoffset=(Math.round(plus.navigator.getStatusbarHeight())+1)+'px';
+				}
+				var wsub=plus.webview.create('maps_scan_sub.html','sub',{bottom:bottomoffset,height:'110px',
+	                            position:'absolute',scrollIndicator:'none',background:'transparent'},
+								{scanText:'扫码离场'});
+				ws.append(wsub);
 			});
-			
-			function scaned( t, r, f ) {
-				mui.openWindow({
-				    url: 'comingParking.html', 
-				    id:'comingParking'
-				});
-			}
 		</script>
 	</body>
 

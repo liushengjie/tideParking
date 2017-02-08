@@ -33,12 +33,11 @@
 				var marker = plus.webview.currentWebview().marker;
 				var pos = plus.webview.currentWebview().posa;
 				document.getElementById('content').innerHTML = marker.name + "<p>收费停车场&nbsp;&nbsp;距离：330米</br>"+ marker.addr + "</p>";
-				console.log(JSON.stringify(plus.webview.currentWebview().marker));
 				document.getElementById('content').addEventListener('tap', function() {
 				  //打开关于页面
 				  mui.openWindow({
-				    url: 'detail.html', 
-				    id:'detail'
+				    url: 'parkingList.html', 
+				    id:'parkingList'
 				  });
 				});
 				

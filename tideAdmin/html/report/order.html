@@ -1,0 +1,106 @@
+<script type="text/javascript">
+$('#order_datagrid').datagrid({
+    gridTitle : '订单管理',
+    dataUrl: 'json/member/order.json',
+    loadType: 'get',
+    columns: [
+        {
+            name: 'id',
+            label: '订单ID',
+            align: 'center',
+            width: 70,
+            edit: false,
+            add: false
+        },
+        {
+            name: 'userNo',
+            label: '会员ID',
+            align: 'center',
+            width: 150,
+            rule:'required'
+        },
+        {
+            name: 'userName',
+            label: '会员姓名',
+            align: 'center',
+            width: 150,
+            rule:'required'
+        },
+        {
+            name: 'beginTime',
+            label: '开始时间',
+            align: 'center',
+            width: 150,
+            rule:'required'
+        },
+        {
+            name: 'endTime',
+            label: '结束时间',
+            align: 'center',
+            width: 150
+        },   
+        {
+            name: 'parkingCode',
+            label: '车位编码',
+            align: 'center',
+            width: 150
+        },
+         {
+            name: 'account',
+            label: '账单',
+            align: 'center',
+            width: 150
+        }, 
+        {
+            name: 'currentStatus',
+            label: '状态',
+            type: 'select',
+            align: 'center',
+            width: 45,
+            items: [{'1':'已结算'}, {'2':'未结算'}],
+            render: function(value) {
+                return String(value) == '1' ? '已结算' : '未结算'
+            }
+        },
+      
+    ],
+    paging: {pageSize:15},
+    height: '100%',
+    tableWidth:'99%',
+    showToolbar: true,
+    toolbarItem: 'add,edit,|,refresh',
+    local: 'local',
+    filterThead: false,
+    sortAll: true,
+    filterAll: true,
+    linenumberAll: true,
+    showCheckboxcol: true,
+    columnLock: false,
+    editUrl: '/tideServer/admin/base/member/saveOrUpdate',
+    editMode: 'dialog'
+})
+
+$(document).on('bjui.beforeCloseDialog', function(e) {
+    var $dialog = $(e.target)
+    $('#order_datagrid').datagrid('refresh')
+})
+
+</script>
+<div class="bjui-pageHeader">
+   <form name="searchForm" data-toggle="ajaxsearch" data-options="{searchDatagrid:$.CurrentNavtab.find('#order_datagrid')}">
+        <div class="bjui-searchBar">
+            <label>小区名称：</label><input type="text" value="" name="phone" size="10">&nbsp;
+            <label>会员姓名：</label><input type="text" value="" name="userName" size="10">&nbsp;
+            <label>会员ID：</label><input type="text" value="" name="userNo" size="10">&nbsp;
+
+			<button type="submit" class="btn-default" data-icon="search">
+				查询
+			</button>&nbsp; 
+			
+			<button type="reset" class="btn-orange" data-icon="times">重置</button>
+        </div>
+    </form>
+</div>
+<div class="bjui-pageContent">
+	<table id="order_datagrid" class="table table-bordered"></table>
+</div>

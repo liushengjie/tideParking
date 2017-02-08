@@ -1,7 +1,7 @@
 [
     {"name":"报表统计", "children":[
-        {"id":"datagrid-jquery", "name":"会员统计", "target":"navtab", "url":"html/datagrid/datagrid.html"},
-        {"id":"datagrid-data", "name":"订单统计", "target":"navtab", "url":"html/datagrid/datagrid-dom.html"},
-        {"id":"datagrid-tree", "name":"佣金统计", "target":"navtab", "url":"html/datagrid/datagrid-tree.html"}
+        {"id":"datagrid-jquery", "name":"会员统计", "target":"navtab", "url":"html/report/member.html"},
+        {"id":"datagrid-data", "name":"订单统计", "target":"navtab", "url":"html/report/order.html"},
+        {"id":"datagrid-tree", "name":"佣金统计", "target":"navtab", "url":"html/report/commission.html"}
     ]}
 ]

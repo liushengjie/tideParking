@@ -1,0 +1,81 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../css/mui.css" rel="stylesheet" />
+		<script type="text/javascript" src="../js/common.js"></script>
+		<style>
+			html,
+			body {
+				background-color: #efeff4;
+			}
+			header{
+				background-color: #00B38C;
+			}
+		</style>
+	</head>
+
+	<body>
+		<header id="header" class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title">我的停车</h1>
+		</header>
+
+		<div class="mui-content">
+			<div class="mui-card">
+				<div class="mui-card-header"><span class="mui-icon mui-icon mui-icon-info">冀A 649YC</div>
+				<div class="mui-card-content">
+					<div class="mui-card-content-inner mui-navigate-right" id="content">
+						<ul class="mui-table-view">
+							<li class="mui-table-view-cell">
+								<p>业主姓名：xxx</p>
+							</li>
+							<li class="mui-table-view-cell">
+								<p>联系电话：xxxxxxxxx</p>
+							</li>
+							<li class="mui-table-view-cell">
+								<p class="mui-navigate-right">价格：5元/小时</p>
+							</li>
+							<li class="mui-table-view-cell">
+								<p>车位时间：(早8:00--晚6:00)</p>
+							</li>
+							<li class="mui-table-view-cell">
+								<p>地址：河北省石家庄市青园街亚太大酒店</p>
+							</li>
+							<li class="mui-table-view-cell">
+								<p>车位描述：河北省石家庄市青园街亚太大酒店</p>
+							</li>
+							<li class="mui-table-view-cell">
+								<p>发布时间：2016年12月20日</p>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script src="../js/mui.min.js"></script>
+		<script type="text/javascript">
+			mui.init({
+				swipeBack: true //启用右滑关闭功能
+			});
+			
+			mui.plusReady(function() {
+				ws=plus.webview.currentWebview();
+				var bottomoffset='1px';
+				if(plus.navigator.isImmersedStatusbar()){// 兼容immersed状态栏模式
+					topoffset=(Math.round(plus.navigator.getStatusbarHeight())+1)+'px';
+				}
+				var wsub=plus.webview.create('maps_scan_sub.html','sub',{bottom:bottomoffset,height:'110px',
+	                            position:'absolute',scrollIndicator:'none',background:'transparent'},
+								{scanText:'扫码停车',forward:'payment.html'});
+				ws.append(wsub);
+			});
+			
+			
+		</script>
+	</body>
+
+</html>

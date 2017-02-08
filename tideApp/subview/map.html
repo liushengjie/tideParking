@@ -47,6 +47,7 @@
 				createMarker();
 				// 创建子窗口
 				createSearchSubview();
+				createScanSubview();
 				userLocation();
 				map.onclick = function( point ){
 					if(wMarkSub != null){
@@ -117,7 +118,9 @@
 				topoffset=(Math.round(plus.navigator.getStatusbarHeight())+1)+'px';
 			}
 			if(wMarkSub == null){
-				wMarkSub=plus.webview.create('maps_mark_sub.html','mark',{bottom:bottomoffset,height:'160px',position:'absolute',scrollIndicator:'none',background:'transparent'},{marker:mark,posa:posa,map:map});
+				wMarkSub=plus.webview.create('maps_mark_sub.html','mark',{bottom:bottomoffset,
+					height:'160px',position:'absolute',scrollIndicator:'none',background:'transparent'},
+					{marker:mark,posa:posa,map:map});
 				ws.append(wMarkSub);
 			}
 		}
@@ -128,9 +131,23 @@
 			if(plus.navigator.isImmersedStatusbar()){// 兼容immersed状态栏模式
 				topoffset=(Math.round(plus.navigator.getStatusbarHeight())+44)+'px';
 			}
-			var wsub=plus.webview.create('maps_search_sub.html','sub',{top:topoffset,height:'50px',position:'absolute',scrollIndicator:'none',background:'transparent'});
+			var wsub=plus.webview.create('maps_search_sub.html','sub',{top:topoffset,
+				height:'50px',position:'absolute',scrollIndicator:'none',background:'transparent'});
 			ws.append(wsub);
 		}
+		
+		function createScanSubview(){
+			// 创建加载内容窗口
+			var bottomoffset='1px';
+			if(plus.navigator.isImmersedStatusbar()){// 兼容immersed状态栏模式
+				topoffset=(Math.round(plus.navigator.getStatusbarHeight())+1)+'px';
+			}
+			var wsub=plus.webview.create('maps_scan_sub.html','sub',{bottom:bottomoffset,
+				height:'110px',position:'absolute',scrollIndicator:'none',background:'transparent'},
+				{scanText:'扫码开杆',forward:'commingParking.html'});
+			ws.append(wsub);
+		}
+		
 		</script>
 	</body>
 	<script type="text/javascript" src="../js/immersed.js" ></script>

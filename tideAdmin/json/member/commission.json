@@ -1,0 +1,14 @@
+{
+   "list": [
+    {
+     "id": "1",
+      "userNo": "zhangshunli",
+      "userName": "张顺利",
+      "beginTime":"2017-1-12 8:01",
+      "endTime":"2017-1-12 10:01",
+      "parkingCode":"zzz01243",
+      "account":"12.56",
+      "currentStatus":"1"
+    }
+  ]
+}

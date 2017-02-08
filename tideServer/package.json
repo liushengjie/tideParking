@@ -20,10 +20,10 @@
     "multiparty": "^4.1.2",
     "read-chunk": "^2.0.0",
     "shortid": "^2.2.6",
-    "weapp-session": "^0.3.0",
     "mysql": "^2.11.1",
     "socket.io":"*",
     "net":"*",
-    "cors":"*"
+    "cors":"*",
+    "redis":"*"
   }
 }
